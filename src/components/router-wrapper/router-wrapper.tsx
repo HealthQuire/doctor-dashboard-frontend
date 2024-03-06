@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Nav from "../nav";
+import Nav from "../nav/nav.tsx";
 import {BodyContainer, RouterWrapperDiv} from "./styles";
 import Header from "../header/header.tsx";
 
