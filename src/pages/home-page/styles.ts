@@ -6,7 +6,28 @@ export const HomePageWrapper = styled.div`
     align-items: center;
     padding: 20px;
 `;
+export const StatisticsWrapper = styled.div``;
+
+export const QuickActionsWrapper = styled.div``;
+
+export const QuickActionsButton = styled.button``;
+
+export const QuickActionsButtonIcon = styled.img``;
+
+export const QuickActionsButtonText = styled.span``;
 
 export const TodayAppointmentsWrapper = styled.div``;
 
-export const StatisticsWrapper = styled.div``;
+export const TodayAppointmentsTitle = styled.h2``;
+
+export const TodayAppointmentsList = styled.div``;
+
+export const TodayAppointmentsListItem = styled.div``;
+
+export const TodayAppointmentsItemTitle = styled.h3``;
+
+export const TodayAppointmentsItemTime = styled.span``;
+
+export const TodayAppointmentsItemStatus = styled.span``;
+
+export const TodayAppointmentsItemButton = styled.button``;

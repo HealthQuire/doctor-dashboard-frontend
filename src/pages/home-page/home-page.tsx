@@ -1,9 +1,31 @@
-import { HomePageWrapper } from './styles.ts';
+import {
+    HomePageWrapper,
+    QuickActionsButton,
+    QuickActionsButtonIcon,
+    QuickActionsButtonText,
+    QuickActionsWrapper,
+    TodayAppointmentsList,
+    TodayAppointmentsTitle,
+    TodayAppointmentsWrapper
+} from './styles.ts';
 
 const HomePage = () => {
     return (
         <HomePageWrapper>
-            <h1>Home Page</h1>
+            <QuickActionsWrapper>
+                <QuickActionsButton>
+                    <QuickActionsButtonIcon />
+                    <QuickActionsButtonText>Расписание</QuickActionsButtonText>
+                </QuickActionsButton>
+                <QuickActionsButton>
+                    <QuickActionsButtonIcon />
+                    <QuickActionsButtonText>История обследований</QuickActionsButtonText>
+                </QuickActionsButton>
+            </QuickActionsWrapper>
+            <TodayAppointmentsWrapper>
+                <TodayAppointmentsTitle></TodayAppointmentsTitle>
+                <TodayAppointmentsList></TodayAppointmentsList>
+            </TodayAppointmentsWrapper>
         </HomePageWrapper>
     );
 };
