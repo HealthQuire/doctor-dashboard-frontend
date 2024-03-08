@@ -5,4 +5,8 @@ export const HomePageWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 20px;
-`
+`;
+
+export const TodayAppointmentsWrapper = styled.div``;
+
+export const StatisticsWrapper = styled.div``;
