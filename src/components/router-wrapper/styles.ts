@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import theme from "../../styles/theme.ts";
+import styled from 'styled-components';
+import theme from '../../styles/theme.ts';
 
 export const RouterWrapperDiv = styled.div`
     display: flex;
@@ -8,14 +8,13 @@ export const RouterWrapperDiv = styled.div`
     align-items: end;
     justify-content: end;
     background-color: ${theme.colors.bgPrimary};
-`
+`;
 
 export const BodyContainer = styled.div`
     display: flex;
     height: 100%;
-    width: calc(100vw - 240px);
+    width: 100%;
     flex-direction: column;
     align-items: end;
     justify-content: end;
-
-`
+`;

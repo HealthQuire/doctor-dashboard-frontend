@@ -1,14 +1,12 @@
 import {createBrowserRouter} from "react-router-dom"
 import RouterWrapper from "./components/router-wrapper/router-wrapper"
-import Home from "./pages/home"
-import Workshop from "./pages/workshop";
-import Login from "./pages/login";
-
+import LoginPage from './pages/login-page/login-page.tsx';
+import HomePage from './pages/home-page/home-page.tsx';
 
 const router = createBrowserRouter([
     {
         path: "/login",
-        element: <Login/>
+        element: <LoginPage/>
     },
     {
         path: "/",
@@ -16,27 +14,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "",
-                element: <Home />
-            },
-            {
-                path: "organizations",
-                element: <Workshop />
-            },
-            {
-                path: "doctors",
-                element: <Workshop />
-            },
-            {
-                path: "clients",
-                element: <Workshop />
-            },
-            {
-                path: "appointments",
-                element: <Workshop />
-            },
-            {
-                path: "managers",
-                element: <Workshop />
+                element: <HomePage />
             },
             {
                 path: "documentation",
