@@ -11,7 +11,18 @@ export interface ICustomer {
     comment?: string;
 }
 
-const url = import.meta.env.VITE_SERVER_URL + '/api/agents';
+export interface ICustomerBody {
+    email: string;
+    password: string;
+    phone?: string;
+    firstname: string;
+    lastname: string;
+    fathername?: string;
+    avatarURL?: string;
+    birthdate: string;
+    gender: boolean;
+    comment?: string;
+}
 
 const getAccessToken = (): string => {
     const token = localStorage.getItem('access_token');
@@ -21,63 +32,62 @@ const getAccessToken = (): string => {
 export const agentsApi = createApi({
     reducerPath: 'agentsApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: url,
+        baseUrl: import.meta.env.VITE_SERVER_URL + '/agents',
         prepareHeaders: (headers) => {
             headers.set('Authorization', getAccessToken());
             return headers;
         }
     }),
-    tagTypes: ['Agent'],
+    tagTypes: ['CUSTOMER'],
     endpoints: (builder) => ({
-        getAgents: builder.query<IAgent[], void>({
+        getCustomers: builder.query<ICustomer[], void>({
             query: () => '/',
-            providesTags: ['Agent']
+            providesTags: ['CUSTOMER']
         }),
 
-        getAgentById: builder.query({
+        getCustomerById: builder.query({
             query: (id: string) => '/' + id,
-            providesTags: ['Agent']
+            providesTags: ['CUSTOMER']
         }),
 
-        postAgent: builder.mutation<IAgent, Partial<IAgent>>({
-            query(body: Partial<IAgent>) {
+        postAgent: builder.mutation<ICustomer, ICustomerBody>({
+            query(body: ICustomerBody) {
                 return {
                     url: `/`,
                     method: 'POST',
-                    body
+                    body: body
                 };
             },
-            invalidatesTags: ['Agent']
+            invalidatesTags: ['CUSTOMER']
         }),
 
-        putAgent: builder.mutation<IAgent, { update: Partial<IAgent>; postId: string }>({
-            query(body: { update: Partial<IAgent>; postId: string }) {
+        putAgent: builder.mutation<ICustomer, { update: Partial<ICustomer>; id: string }>({
+            query(body: { update: Partial<ICustomer>; id: string }) {
                 return {
-                    url: `/`,
+                    url: `/${body.id}`,
                     method: 'PUT',
-                    body
+                    body: body.update
                 };
             },
-            invalidatesTags: ['Agent']
+            invalidatesTags: ['CUSTOMER']
         }),
 
-        deleteAgent: builder.mutation<IAgent, { postId: string }>({
-            query(body: { postId: string }) {
+        deleteCustomer: builder.mutation<ICustomer, { id: string }>({
+            query(body: { id: string }) {
                 return {
-                    url: `/`,
-                    method: 'DELETE',
-                    body
+                    url: `/${body.id}`,
+                    method: 'DELETE'
                 };
             },
-            invalidatesTags: ['Agent']
+            invalidatesTags: ['CUSTOMER']
         })
     })
 });
 
 export const {
-    useGetAgentsQuery,
-    useGetAgentByIdQuery,
+    useGetCustomersQuery,
+    useGetCustomerByIdQuery,
     usePostAgentMutation,
     usePutAgentMutation,
-    useDeleteAgentMutation
+    useDeleteCustomerMutation
 } = agentsApi;

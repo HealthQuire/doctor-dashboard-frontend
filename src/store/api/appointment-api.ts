@@ -1,9 +1,17 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getAccessToken } from '../../utils/auth.ts';
+import { ITimeCell } from './timecell-api.ts';
 
 export interface IAppointment {
-    _id: mongoose.Types.ObjectId;
+    _id: string;
     timecell: ITimeCell;
+    title: string;
+    content: string;
+    status: number;
+}
+
+export interface IAppointmentBody {
+    id: string;
     title: string;
     content: string;
     status: number;
@@ -30,7 +38,7 @@ export const appointmentApi = createApi({
             providesTags: ['APPOINTMENT']
         }),
 
-        postAppointment: builder.mutation<IAppointment, Partial<IAppointment>>({
+        postAppointment: builder.mutation<IAppointment, Partial<IAppointmentBody>>({
             query(body: Partial<IAppointment>) {
                 return {
                     url: `/`,
@@ -43,13 +51,13 @@ export const appointmentApi = createApi({
 
         patchAppoitnment: builder.mutation<
             IAppointment,
-            { update: Partial<IAppointment>; id: string }
+            { update: Partial<IAppointmentBody>; id: string }
         >({
-            query(body: { update: Partial<IAppointment>; id: string }) {
+            query(body: { update: Partial<IAppointmentBody>; id: string }) {
                 return {
                     url: `/${body.id}`,
                     method: 'PATCH',
-                    update: body.update
+                    body: body.update
                 };
             },
             invalidatesTags: ['APPOINTMENT']
