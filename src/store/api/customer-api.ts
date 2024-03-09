@@ -29,10 +29,10 @@ const getAccessToken = (): string => {
     return token ? token : '';
 };
 
-export const agentsApi = createApi({
+export const customerApi = createApi({
     reducerPath: 'agentsApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: import.meta.env.VITE_SERVER_URL + '/agents',
+        baseUrl: import.meta.env.VITE_SERVER_URL + '/customer',
         prepareHeaders: (headers) => {
             headers.set('Authorization', getAccessToken());
             return headers;
@@ -61,11 +61,11 @@ export const agentsApi = createApi({
             invalidatesTags: ['CUSTOMER']
         }),
 
-        putAgent: builder.mutation<ICustomer, { update: Partial<ICustomer>; id: string }>({
+        patchAgent: builder.mutation<ICustomer, { update: Partial<ICustomer>; id: string }>({
             query(body: { update: Partial<ICustomer>; id: string }) {
                 return {
                     url: `/${body.id}`,
-                    method: 'PUT',
+                    method: 'PATCH',
                     body: body.update
                 };
             },
@@ -88,6 +88,6 @@ export const {
     useGetCustomersQuery,
     useGetCustomerByIdQuery,
     usePostAgentMutation,
-    usePutAgentMutation,
+    usePatchAgentMutation,
     useDeleteCustomerMutation
-} = agentsApi;
+} = customerApi;

@@ -13,7 +13,20 @@ export interface IDoctor {
     description?: string;
 }
 
-const url = import.meta.env.VITE_SERVER_URL + '/api/agents';
+export interface IDoctorBody {
+    email: string;
+    password: string;
+    phone?: string;
+    avatarURL?: string;
+    medcentreid: string;
+    firstname: string;
+    lastname: string;
+    fathername?: string;
+    age: number;
+    year_started: number;
+    medservicesids: Array<string>;
+    description?: string;
+}
 
 const getAccessToken = (): string => {
     const token = localStorage.getItem('access_token');
@@ -23,63 +36,62 @@ const getAccessToken = (): string => {
 export const doctorApi = createApi({
     reducerPath: 'doctorApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: url,
+        baseUrl: import.meta.env.VITE_API_URL + '/doctor',
         prepareHeaders: (headers) => {
             headers.set('Authorization', getAccessToken());
             return headers;
         }
     }),
-    tagTypes: ['Agent'],
+    tagTypes: ['DOCTOR'],
     endpoints: (builder) => ({
-        getAgents: builder.query<IAgent[], void>({
+        getDoctors: builder.query<IDoctor[], void>({
             query: () => '/',
-            providesTags: ['Agent']
+            providesTags: ['DOCTOR']
         }),
 
-        getAgentById: builder.query({
+        getDoctorById: builder.query({
             query: (id: string) => '/' + id,
-            providesTags: ['Agent']
+            providesTags: ['DOCTOR']
         }),
 
-        postAgent: builder.mutation<IAgent, Partial<IAgent>>({
-            query(body: Partial<IAgent>) {
+        postDoctor: builder.mutation<IDoctor, IDoctorBody>({
+            query(body: Partial<IDoctor>) {
                 return {
                     url: `/`,
                     method: 'POST',
                     body
                 };
             },
-            invalidatesTags: ['Agent']
+            invalidatesTags: ['DOCTOR']
         }),
 
-        putAgent: builder.mutation<IAgent, { update: Partial<IAgent>; postId: string }>({
-            query(body: { update: Partial<IAgent>; postId: string }) {
+        patchDoctor: builder.mutation<IDoctor, { update: Partial<IDoctor>; id: string }>({
+            query(body: { update: Partial<IDoctor>; id: string }) {
                 return {
-                    url: `/`,
-                    method: 'PUT',
-                    body
+                    url: `/${body.id}`,
+                    method: 'PATCH',
+                    body: body.update
                 };
             },
-            invalidatesTags: ['Agent']
+            invalidatesTags: ['DOCTOR']
         }),
 
-        deleteAgent: builder.mutation<IAgent, { postId: string }>({
-            query(body: { postId: string }) {
+        deleteDoctor: builder.mutation<IDoctor, { id: string }>({
+            query(body: { id: string }) {
                 return {
-                    url: `/`,
-                    method: 'DELETE',
-                    body
+                    url: `/${body.id}`,
+                    method: 'DELETE'
                 };
             },
-            invalidatesTags: ['Agent']
+            invalidatesTags: ['DOCTOR']
         })
     })
 });
 
 export const {
-    useGetAgentsQuery,
-    useGetAgentByIdQuery,
-    usePostAgentMutation,
-    usePutAgentMutation,
-    useDeleteAgentMutation
-} = agentsApi;
+    useGetDoctorByIdQuery,
+    useGetDoctorsQuery,
+    usePatchDoctorMutation,
+    usePostDoctorMutation,
+    useDeleteDoctorMutation
+} = doctorApi;
