@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { getAccessToken } from '../../utils/auth.ts';
 
 export interface IDoctor {
     _id: string;
@@ -28,13 +29,8 @@ export interface IDoctorBody {
     description?: string;
 }
 
-const getAccessToken = (): string => {
-    const token = localStorage.getItem('access_token');
-    return token ? token : '';
-};
-
 export const doctorApi = createApi({
-    reducerPath: 'doctorApi',
+    reducerPath: 'TIMECELL_API',
     baseQuery: fetchBaseQuery({
         baseUrl: import.meta.env.VITE_API_URL + '/doctor',
         prepareHeaders: (headers) => {

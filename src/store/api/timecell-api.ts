@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { IDoctor } from './doctor-api.ts';
 import { ICustomer } from './customer-api.ts';
+import { getAccessToken } from '../../utils/auth.ts';
 
 export interface ITimeCell {
     _id: string;
@@ -11,73 +12,73 @@ export interface ITimeCell {
     time: string;
 }
 
-const url = import.meta.env.VITE_SERVER_URL + '/api/agents';
+export interface ITimeCellBody {
+    doctor: string;
+    customer: string;
+    comment?: string;
+    date: Date;
+    time: string;
+}
 
-const getAccessToken = (): string => {
-    const token = localStorage.getItem('access_token');
-    return token ? token : '';
-};
-
-export const agentsApi = createApi({
-    reducerPath: 'agentsApi',
+export const timecellApi = createApi({
+    reducerPath: 'TIMECELL_API',
     baseQuery: fetchBaseQuery({
-        baseUrl: url,
+        baseUrl: import.meta.env.VITE_SERVER_URL + '/timecell',
         prepareHeaders: (headers) => {
             headers.set('Authorization', getAccessToken());
             return headers;
         }
     }),
-    tagTypes: ['Agent'],
+    tagTypes: ['TIMECELL'],
     endpoints: (builder) => ({
-        getAgents: builder.query<IAgent[], void>({
+        getTimeCells: builder.query<ITimeCell[], void>({
             query: () => '/',
-            providesTags: ['Agent']
+            providesTags: ['TIMECELL']
         }),
 
-        getAgentById: builder.query({
-            query: (id: string) => '/' + id,
-            providesTags: ['Agent']
+        getTimeCellById: builder.query({
+            query: (id: string) => `/${id}`,
+            providesTags: ['TIMECELL']
         }),
 
-        postAgent: builder.mutation<IAgent, Partial<IAgent>>({
-            query(body: Partial<IAgent>) {
+        postAgent: builder.mutation<ITimeCell, ITimeCellBody>({
+            query(body: ITimeCellBody) {
                 return {
                     url: `/`,
                     method: 'POST',
                     body
                 };
             },
-            invalidatesTags: ['Agent']
+            invalidatesTags: ['TIMECELL']
         }),
 
-        putAgent: builder.mutation<IAgent, { update: Partial<IAgent>; postId: string }>({
-            query(body: { update: Partial<IAgent>; postId: string }) {
+        putAgent: builder.mutation<ITimeCell, { update: Partial<ITimeCell>; id: string }>({
+            query(body: { update: Partial<ITimeCell>; id: string }) {
                 return {
-                    url: `/`,
-                    method: 'PUT',
-                    body
+                    url: `/${body.id}`,
+                    method: 'PATCH',
+                    body: body.update
                 };
             },
-            invalidatesTags: ['Agent']
+            invalidatesTags: ['TIMECELL']
         }),
 
-        deleteAgent: builder.mutation<IAgent, { postId: string }>({
-            query(body: { postId: string }) {
+        deleteAgent: builder.mutation<ITimeCell, { id: string }>({
+            query(body: { id: string }) {
                 return {
-                    url: `/`,
-                    method: 'DELETE',
-                    body
+                    url: `/${body.id}`,
+                    method: 'DELETE'
                 };
             },
-            invalidatesTags: ['Agent']
+            invalidatesTags: ['TIMECELL']
         })
     })
 });
 
 export const {
-    useGetAgentsQuery,
-    useGetAgentByIdQuery,
+    useGetTimeCellByIdQuery,
+    useGetTimeCellsQuery,
     usePostAgentMutation,
     usePutAgentMutation,
     useDeleteAgentMutation
-} = agentsApi;
+} = timecellApi;
