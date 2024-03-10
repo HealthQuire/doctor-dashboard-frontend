@@ -11,8 +11,8 @@ export interface IAppointment {
 }
 
 export interface IAppointmentBody {
-    id: string;
     title: string;
+    timecell: string;
     content: string;
     status: number;
 }
@@ -38,8 +38,14 @@ export const appointmentApi = createApi({
             providesTags: ['APPOINTMENT']
         }),
 
-        postAppointment: builder.mutation<IAppointment, Partial<IAppointmentBody>>({
-            query(body: Partial<IAppointment>) {
+        getDoctorAppointments: builder.query<IAppointment[], string>({
+            query: (searchString: string) =>
+                `/doctor/${localStorage.getItem('doctorid')}/${searchString ? searchString : '-'}`,
+            providesTags: ['APPOINTMENT']
+        }),
+
+        postAppointment: builder.mutation<IAppointment, IAppointmentBody>({
+            query(body: IAppointmentBody) {
                 return {
                     url: `/`,
                     method: 'POST',
@@ -77,8 +83,8 @@ export const appointmentApi = createApi({
 
 export const {
     useGetAppointmentByIdQuery,
-    useGetDoctorAppointmentQuery,
     useDeleteAppointmentMutation,
     usePatchAppoitnmentMutation,
-    usePostAppointmentMutation
+    usePostAppointmentMutation,
+    useGetDoctorAppointmentsQuery
 } = appointmentApi;

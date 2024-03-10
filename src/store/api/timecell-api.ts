@@ -45,6 +45,11 @@ export const timecellApi = createApi({
             providesTags: ['TIMECELL']
         }),
 
+        getCurrentWeekDoctorTimeCells: builder.query<ITimeCell[], void>({
+            query: () => `/currentweek/${localStorage.getItem('doctorid')}`,
+            providesTags: ['TIMECELL']
+        }),
+
         getTimeCellById: builder.query({
             query: (id: string) => `/${id}`,
             providesTags: ['TIMECELL']
@@ -90,5 +95,6 @@ export const {
     usePostAgentMutation,
     usePutAgentMutation,
     useDeleteAgentMutation,
-    useGetTodayDoctorTimeCellsQuery
+    useGetTodayDoctorTimeCellsQuery,
+    useGetCurrentWeekDoctorTimeCellsQuery
 } = timecellApi;

@@ -22,12 +22,6 @@ import { faUser, faTable, faHistory } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const HomePage = () => {
-    // const {
-    //     data: todayData,
-    //     error: todayError,
-    //     isLoading: todayIsLoading
-    // } = useGetTodayDoctorTimeCellsQuery('123123');
-
     const todayTimeCells = useGetTodayDoctorTimeCellsQuery();
     const doctorData = useGetCurrentDoctorQuery();
 
@@ -59,7 +53,7 @@ const HomePage = () => {
                 <TodayAppointmentsList>
                     {todayTimeCells.data ? (
                         todayTimeCells.data.map((timeCell) => (
-                            <TodayAppointmentsListItem>
+                            <TodayAppointmentsListItem key={timeCell._id}>
                                 <FontAwesomeIcon icon={faUser} size="xl" />
                                 <TodayAppointmentsItemTitle>
                                     {capitalize(timeCell.customer.lastname)}{' '}

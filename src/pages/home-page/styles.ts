@@ -98,7 +98,7 @@ export const TodayAppointmentsListItem = styled.div`
     display: grid;
     width: 95%;
     grid-template-columns: 5% 15% 10% 40% 20%;
-    gap: 32px;
+    gap: 16px;
     align-items: center;
     transition: 0.2s;
     padding: 16px;

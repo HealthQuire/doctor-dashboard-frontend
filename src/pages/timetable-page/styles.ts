@@ -6,3 +6,11 @@ export const TimeTableWrapper = styled.div`
     align-items: center;
     padding: 20px;
 `;
+
+export const TimeTableTitle = styled.div``;
+
+export const TimeTableContainer = styled.div``;
+
+export const TimeTableDayColumn = styled.div``;
+
+export const TimeTableDayCell = styled.div``;
