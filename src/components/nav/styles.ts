@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import basicTheme from '../../styles/theme.ts';
 import { Link, NavLink } from 'react-router-dom';
 import theme from '../../styles/theme.ts';
-import logo from '../../assets/small.png';
+import logo from '../../assets/upper-logo.png';
 
 export const optionIconStyle = {
     marginRight: '10px',
@@ -35,11 +35,14 @@ export const HeaderWrapper = styled.div`
 
 export const HeaderLogo = styled.div`
     background-image: url(${logo});
-    width: 150px;
-    height: 96px;
+    width: 120px;
+    height: 90px;
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: left;
+    margin-top: 48px;
+    margin-bottom: 32px;
+    margin-right: 128px;
 `;
 
 export const HeaderTop = styled.div`

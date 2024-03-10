@@ -4,7 +4,7 @@ import theme from '../../styles/theme.ts';
 export const Preloader = () => {
     return (
         <DefaultPreloaderWrapper>
-            Загрузка...
+            Loading...
             <CircleSegment size={'100px'} color={theme.colors.textPrimary} position={'1'} id={1} />
         </DefaultPreloaderWrapper>
     );

@@ -20,7 +20,7 @@ const router = createBrowserRouter([
                 element: <HomePage />
             },
             {
-                path: 'appointment/:appointmentid',
+                path: 'appointment/:timecellid',
                 element: <AppointmentPage />
             },
             {

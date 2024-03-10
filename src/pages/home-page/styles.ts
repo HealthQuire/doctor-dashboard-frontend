@@ -133,7 +133,7 @@ export const TodayAppointmentsItemComment = styled.h3`
     font-weight: lighter;
 `;
 
-export const TodayAppointmentsItemButton = styled.button`
+export const TodayAppointmentsItemButton = styled(NavLink)`
     background-color: ${theme.colors.bgSecondary};
     color: ${theme.colors.textPrimary};
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
@@ -142,6 +142,7 @@ export const TodayAppointmentsItemButton = styled.button`
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    text-decoration: none;
     transition: 0.3s;
     &:focus {
         outline: none;

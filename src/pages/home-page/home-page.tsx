@@ -72,7 +72,7 @@ const HomePage = () => {
                                 <TodayAppointmentsItemComment>
                                     Comment: {timeCell.comment}
                                 </TodayAppointmentsItemComment>
-                                <TodayAppointmentsItemButton>
+                                <TodayAppointmentsItemButton to={'appointment/' + timeCell._id}>
                                     Create examination
                                 </TodayAppointmentsItemButton>
                             </TodayAppointmentsListItem>
