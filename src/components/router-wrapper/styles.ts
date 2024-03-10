@@ -9,13 +9,14 @@ export const RouterWrapperDiv = styled.div`
     display: flex;
     width: 100%;
     flex-direction: row;
+    justify-content: end;
     background-color: ${theme.colors.bgPrimary};
 `;
 
 export const BodyContainer = styled.div`
     display: flex;
     height: 100%;
-    width: 100%;
+    width: calc(100% - 250px);
     flex-direction: column;
     align-items: end;
     justify-content: end;
