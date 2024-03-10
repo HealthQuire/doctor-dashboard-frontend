@@ -20,6 +20,8 @@ export interface ITimeCellBody {
     time: string;
 }
 
+console.log(import.meta.env.VITE_API_URL + '/timecell');
+
 export const timecellApi = createApi({
     reducerPath: 'TIMECELL_API',
     baseQuery: fetchBaseQuery({
@@ -33,6 +35,11 @@ export const timecellApi = createApi({
     endpoints: (builder) => ({
         getTimeCells: builder.query<ITimeCell[], void>({
             query: () => '/',
+            providesTags: ['TIMECELL']
+        }),
+
+        getTodayDoctorTimeCells: builder.query({
+            query: () => `/today/${localStorage.getItem('doctorid')}`,
             providesTags: ['TIMECELL']
         }),
 
@@ -80,5 +87,6 @@ export const {
     useGetTimeCellsQuery,
     usePostAgentMutation,
     usePutAgentMutation,
-    useDeleteAgentMutation
+    useDeleteAgentMutation,
+    useGetTodayDoctorTimeCellsQuery
 } = timecellApi;

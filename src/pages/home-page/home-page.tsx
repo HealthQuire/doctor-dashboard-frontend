@@ -8,10 +8,25 @@ import {
     TodayAppointmentsTitle,
     TodayAppointmentsWrapper
 } from './styles.ts';
+import { useGetTodayDoctorTimeCellsQuery } from '../../store/api/timecell-api.ts';
+import { useEffect } from 'react';
 
 const HomePage = () => {
+    const {
+        data: todayData,
+        error: todayError,
+        isLoading: todayIsLoading
+    } = useGetTodayDoctorTimeCellsQuery();
+
+    useEffect(() => {
+        console.log(todayError);
+    }, [todayError]);
+
     return (
         <HomePageWrapper>
+            <div>IS LOADING: {JSON.stringify(todayIsLoading)}</div>
+            <div>IS ERROR: {String(todayError)}</div>
+            <div>DATA: {JSON.stringify(todayData)}</div>
             <QuickActionsWrapper>
                 <QuickActionsButton>
                     <QuickActionsButtonIcon />

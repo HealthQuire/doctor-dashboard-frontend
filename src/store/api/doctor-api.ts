@@ -30,7 +30,7 @@ export interface IDoctorBody {
 }
 
 export const doctorApi = createApi({
-    reducerPath: 'TIMECELL_API',
+    reducerPath: 'DOCTOR_API',
     baseQuery: fetchBaseQuery({
         baseUrl: import.meta.env.VITE_API_URL + '/doctor',
         prepareHeaders: (headers) => {

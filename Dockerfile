@@ -1,6 +1,6 @@
 FROM node:18-alpine
 
-EXPOSE 3445
+EXPOSE 3003
 
 WORKDIR /doctor-dashboard-frontend
 

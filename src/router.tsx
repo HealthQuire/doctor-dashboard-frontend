@@ -12,7 +12,7 @@ const router = createBrowserRouter([
         element: <LoginPage />
     },
     {
-        path: '/:doctorid',
+        path: '/',
         element: <RouterWrapper />,
         children: [
             {
