@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import theme from '../../styles/theme.ts';
 
+export const RouterContainer = styled.div`
+    min-height: 100vh;
+`;
+
 export const RouterWrapperDiv = styled.div`
     display: flex;
-    width: 100vw;
+    width: 100%;
     flex-direction: row;
-    align-items: end;
-    justify-content: end;
     background-color: ${theme.colors.bgPrimary};
 `;
 

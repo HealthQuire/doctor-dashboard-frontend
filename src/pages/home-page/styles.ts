@@ -1,33 +1,135 @@
 import styled from 'styled-components';
+import theme from '../../styles/theme.ts';
+
+export const GreetingBlock = styled.div`
+    font-size: 36px;
+    font-weight: 900;
+    margin: 32px 0;
+    height: 400px;
+    opacity: 0.8;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-wrap: balanced;
+`;
 
 export const HomePageWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    width: 100%;
 `;
 export const StatisticsWrapper = styled.div``;
 
-export const QuickActionsWrapper = styled.div``;
+export const QuickActionsWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    gap: 48px;
+`;
 
-export const QuickActionsButton = styled.button``;
+export const QuickActionsButton = styled.div<{ color1: string; color2: string }>`
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 50%;
+    height: 250px;
+    border-radius: 48px;
+    padding: 48px;
+    transition: 0.3s;
+    background: linear-gradient(45deg, ${(props) => props.color1}, ${(props) => props.color2});
+`;
 
-export const QuickActionsButtonIcon = styled.img``;
+export const QuickActionsButtonIcon = styled.img`
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 96px;
+    height: 96px;
+    padding: 20px;
+`;
 
-export const QuickActionsButtonText = styled.span``;
+export const QuickActionsButtonText = styled.span`
+    font-weight: 900;
+    font-size: 30px;
+`;
 
-export const TodayAppointmentsWrapper = styled.div``;
+export const TodayAppointmentsWrapper = styled.div`
+    margin-top: 128px;
+    width: 90%;
+    background-color: ${theme.colors.bgDark};
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    padding: 24px 72px;
+    border-radius: 5px;
+`;
 
-export const TodayAppointmentsTitle = styled.h2``;
+export const TodayAppointmentsTitle = styled.h2`
+    font-size: 36px;
+    opacity: 0.8;
+    margin: 64px;
+`;
 
-export const TodayAppointmentsList = styled.div``;
+export const TodayAppointmentsList = styled.div`
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 20px;
+    gap: 32px;
+    border-radius: 5px;
+`;
 
-export const TodayAppointmentsListItem = styled.div``;
+export const TodayAppointmentsListItem = styled.div`
+    display: grid;
+    width: 95%;
+    grid-template-columns: 5% 15% 10% 45% 20%;
+    gap: 32px;
+    align-items: center;
+`;
 
-export const TodayAppointmentsItemTitle = styled.h3``;
+export const TodayAppointmentsItemIcon = styled.img`
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #747bff;
+`;
 
-export const TodayAppointmentsItemTime = styled.span``;
+export const TodayAppointmentsItemTitle = styled.h3`
+    text-align: left;
+    font-size: 14px;
+`;
 
-export const TodayAppointmentsItemStatus = styled.span``;
+export const TodayAppointmentsItemStatus = styled.h3`
+    font-weight: 900;
+    color: ${theme.colors.textSecondary};
+    opacity: 0.8;
+    font-size: 16px;
+`;
 
-export const TodayAppointmentsItemButton = styled.button``;
+export const TodayAppointmentsItemComment = styled.h3`
+    font-style: italic;
+    font-size: 14px;
+    font-weight: lighter;
+`;
+
+export const TodayAppointmentsItemButton = styled.button`
+    background-color: ${theme.colors.bgSecondary};
+    color: ${theme.colors.textPrimary};
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    &:focus {
+        outline: none;
+        border: none;
+    }
+    &:hover {
+        background-color: ${theme.colors.bgPads};
+        color: ${theme.colors.textSecondary};
+    }
+`;

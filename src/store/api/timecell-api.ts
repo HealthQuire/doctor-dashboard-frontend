@@ -20,12 +20,14 @@ export interface ITimeCellBody {
     time: string;
 }
 
-console.log(import.meta.env.VITE_API_URL + '/timecell');
+console.log(
+    import.meta.env.VITE_API_URL + '/timecell' + `/today/${localStorage.getItem('doctorid')}`
+);
 
 export const timecellApi = createApi({
     reducerPath: 'TIMECELL_API',
     baseQuery: fetchBaseQuery({
-        baseUrl: import.meta.env.VITE_SERVER_URL + '/timecell',
+        baseUrl: import.meta.env.VITE_API_URL + '/timecell',
         prepareHeaders: (headers) => {
             headers.set('Authorization', getAccessToken());
             return headers;
@@ -38,7 +40,7 @@ export const timecellApi = createApi({
             providesTags: ['TIMECELL']
         }),
 
-        getTodayDoctorTimeCells: builder.query({
+        getTodayDoctorTimeCells: builder.query<ITimeCell[], void>({
             query: () => `/today/${localStorage.getItem('doctorid')}`,
             providesTags: ['TIMECELL']
         }),

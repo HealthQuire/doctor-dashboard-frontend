@@ -32,7 +32,7 @@ const getAccessToken = (): string => {
 export const customerApi = createApi({
     reducerPath: 'CUSTOMER_API',
     baseQuery: fetchBaseQuery({
-        baseUrl: import.meta.env.VITE_SERVER_URL + '/customer',
+        baseUrl: import.meta.env.VITE_API_URL + '/customer',
         prepareHeaders: (headers) => {
             headers.set('Authorization', getAccessToken());
             return headers;

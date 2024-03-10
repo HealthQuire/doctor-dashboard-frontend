@@ -45,7 +45,12 @@ export const doctorApi = createApi({
             providesTags: ['DOCTOR']
         }),
 
-        getDoctorById: builder.query({
+        getCurrentDoctor: builder.query<IDoctor, void>({
+            query: () => '/' + localStorage.getItem('doctorid'),
+            providesTags: ['DOCTOR']
+        }),
+
+        getDoctorById: builder.query<IDoctor, string>({
             query: (id: string) => '/' + id,
             providesTags: ['DOCTOR']
         }),
@@ -89,5 +94,6 @@ export const {
     useGetDoctorsQuery,
     usePatchDoctorMutation,
     usePostDoctorMutation,
-    useDeleteDoctorMutation
+    useDeleteDoctorMutation,
+    useGetCurrentDoctorQuery
 } = doctorApi;

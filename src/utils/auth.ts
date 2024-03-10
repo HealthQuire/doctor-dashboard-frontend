@@ -15,5 +15,6 @@ export const setAccessToken = async (token: string) => {
 };
 
 export const getAccessToken = () => {
+    return '132';
     return localStorage.getItem('access_token') ?? '';
 };
