@@ -140,9 +140,9 @@ const AppointmentPage = () => {
             {popupActive && (
                 <PopupContainer>
                     <PopupWrapper>
-                        <PopupTitle></PopupTitle>
-                        <PopupSubtitle></PopupSubtitle>
-                        <PopupButton to="/">go</PopupButton>
+                        <PopupTitle>Success</PopupTitle>
+                        <PopupSubtitle>Appointment was successfully created</PopupSubtitle>
+                        <PopupButton to="/">Continue</PopupButton>
                     </PopupWrapper>
                 </PopupContainer>
             )}

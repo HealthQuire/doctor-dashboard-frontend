@@ -89,8 +89,14 @@ export const PopupWrapper = styled.div`
     border-radius: 64px;
 `;
 
-export const PopupTitle = styled.h1``;
+export const PopupTitle = styled.h2``;
 
-export const PopupButton = styled(NavLink)``;
+export const PopupButton = styled(NavLink)`
+    background-color: ${theme.colors.bgPrimary};
+    color: #ffffff;
+    text-decoration: none;
+    padding: 16px;
+    border-radius: 4px;
+`;
 
-export const PopupSubtitle = styled.h3``;
+export const PopupSubtitle = styled.h4``;
