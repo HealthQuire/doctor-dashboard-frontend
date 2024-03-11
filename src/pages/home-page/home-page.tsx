@@ -17,13 +17,11 @@ import {
 import { useGetTodayDoctorTimeCellsQuery } from '../../store/api/timecell-api.ts';
 import { Preloader } from '../../components/preloader/preloader.tsx';
 import capitalize from '../../utils/capitalize.ts';
-import { useGetCurrentDoctorQuery } from '../../store/api/doctor-api.ts';
 import { faUser, faTable, faHistory } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const HomePage = () => {
     const todayTimeCells = useGetTodayDoctorTimeCellsQuery();
-    const doctorData = useGetCurrentDoctorQuery();
 
     return (
         <HomePageWrapper>
