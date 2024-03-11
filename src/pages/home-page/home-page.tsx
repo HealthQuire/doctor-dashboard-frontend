@@ -28,11 +28,12 @@ const HomePage = () => {
     return (
         <HomePageWrapper>
             <GreetingBlock>
-                {doctorData.data ? (
-                    'Welcome back, ' + doctorData.data.firstname + ' ' + doctorData.data.lastname
-                ) : (
-                    <Preloader />
-                )}
+                Welcome back, Doctor Doctorov
+                {/*{doctorData.data ? (*/}
+                {/*    'Welcome back, ' + doctorData.data.firstname + ' ' + doctorData.data.lastname*/}
+                {/*) : (*/}
+                {/*    <Preloader />*/}
+                {/*)}*/}
             </GreetingBlock>
             <QuickActionsWrapper>
                 <QuickActionsButton color1="#8E7AB5" color2="#B784B7" to="/timetable">
