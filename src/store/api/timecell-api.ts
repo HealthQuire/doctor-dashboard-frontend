@@ -37,7 +37,13 @@ export const timecellApi = createApi({
     endpoints: (builder) => ({
         getTimeCells: builder.query<ITimeCell[], void>({
             query: () => '/',
-            providesTags: ['TIMECELL']
+            providesTags: ['TIMECELL'],
+            transformResponse(apiResponse, meta) {
+                console.log(meta?.response?.headers);
+                return {
+                    apiResponse
+                };
+            }
         }),
 
         getTodayDoctorTimeCells: builder.query<ITimeCell[], void>({

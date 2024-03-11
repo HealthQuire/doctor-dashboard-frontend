@@ -9,21 +9,28 @@ import {
     LoginPageWrapper
 } from './styles.ts';
 import { useState } from 'react';
+import { Simulate } from 'react-dom/test-utils';
+import submit = Simulate.submit;
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
-    const onSubmit = () => {
+    const navigate = useNavigate();
+    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         // submit!
+        event.preventDefault();
+        localStorage.setItem('doctorid', '65ed60c5018ab38eb252f952');
+        navigate('/');
     };
 
     return (
         <LoginPageWrapper>
             <LoginPageContainer>
                 <HeaderLogo />
-                <LoginForm>
+                <LoginForm onSubmit={onSubmit}>
                     <InputGroup>
                         <FormTextBox
                             value={login}
@@ -52,7 +59,11 @@ const LoginPage = () => {
                         <FormLabel htmlFor="password">Пароль:</FormLabel>
                     </InputGroup>
 
-                    <Button type="submit" disabled={isLoading || !(login && password)}>
+                    <Button
+                        onClick={submit}
+                        type="submit"
+                        disabled={isLoading || !(login && password)}
+                    >
                         {isLoading ? 'Загрузка...' : 'Войти'}
                     </Button>
                     {error && <div style={{ color: 'red' }}>{error}</div>}

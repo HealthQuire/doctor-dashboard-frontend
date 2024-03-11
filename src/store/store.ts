@@ -1,8 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { timecellApi } from './api/timecell-api.ts';
+import { configureStore, createListenerMiddleware } from '@reduxjs/toolkit';
+import { timecellApi, useGetTodayDoctorTimeCellsQuery } from './api/timecell-api.ts';
 import { doctorApi } from './api/doctor-api.ts';
 import { customerApi } from './api/customer-api.ts';
 import { appointmentApi } from './api/appointment-api.ts';
+
+const customMiddleware = createListenerMiddleware();
 
 const store = configureStore({
     reducer: {
@@ -19,6 +21,7 @@ const store = configureStore({
             .concat(doctorApi.middleware)
             .concat(customerApi.middleware)
             .concat(appointmentApi.middleware)
+            .concat(customMiddleware.middleware)
 });
 
 export type RootState = ReturnType<typeof store.getState>;
